@@ -1,0 +1,103 @@
+#/bin/sh
+############################################################################
+# Ralink Tech Inc.
+# 4F, No. 2 Technology 5th Rd.
+# Science-based Industrial Park
+# Hsin-chu, Taiwan, R.O.C.
+#
+# (c) Copyright 2002-2006, Ralink Technology, Inc.
+#
+# All rights reserved. Ralink's source code is an unpublished work and the
+# use of a copyright notice does not imply otherwise. This source code
+# contains confidential trade secret material of Ralink Tech. Any attempt
+# or participation in deciphering, decoding, reverse engineering or in any
+# way altering the source code is stricitly prohibited, unless the prior
+# written consent of Ralink Technology, Inc. is obtained.
+############################################################################
+
+#
+# Change uboot/kernel size if necessary
+#
+
+UBOOT_SIZE = 0x50000
+KERNEL_SIZE = 0x1B0000
+
+#-----------------------------------------------
+
+USER_NAME  = $(shell whoami)
+
+#
+# Uboot Image Information
+#
+UBOOT_DIR = .
+UBOOT_IMAGE = uboot.bin
+
+#
+# Linux Kernel Image Information
+#
+KERNEL_DIR = .
+KERNEL_IMAGE = root_uImage
+
+
+#
+# Single Image Information
+#
+PACKED_DIR = .
+PACKED_IMAGE = root_uImage.img
+
+all: check_img
+
+	@echo ""
+	@echo "Flash layout:"
+	@echo " +-----------+--------+--------+-----------------------------+"
+	@echo " | Uboot     | UsrCfg |  RF    |   Linux Kernel Image        |"
+	@echo " +-----------+--------+--------+-----------------------------+"
+	@echo " |<--------$(UBOOT_SIZE)------------>|<-------$(KERNEL_SIZE)------------>|"
+	
+	@echo -e "\n-Original Uboot Image Size"
+	@wc -c $(UBOOT_DIR)/$(UBOOT_IMAGE)
+
+	@echo -e "\n-Original Kernel Image Size"
+	@wc -c $(KERNEL_DIR)/$(KERNEL_IMAGE)
+
+# Copy Uboot 
+	@cp $(UBOOT_DIR)/$(UBOOT_IMAGE) $(PACKED_DIR)/$(PACKED_IMAGE)
+
+# Finish Uboot Padding
+	@SIZE=`wc -c $(UBOOT_DIR)/$(UBOOT_IMAGE) | awk '{ print $$1 }'` ; \
+	UBOOT_PART_SIZE=`printf "%d" $(UBOOT_SIZE)` ; \
+	PAD=`expr $$UBOOT_PART_SIZE - $$SIZE` ; \
+	dd if=/dev/zero count=1 bs=$$PAD 2> /dev/null | \
+	tr \\000 \\377 >> $(PACKED_DIR)/$(PACKED_IMAGE)
+
+# Copy Kernel
+	@cat $(KERNEL_DIR)/$(KERNEL_IMAGE) >> $(PACKED_DIR)/$(PACKED_IMAGE)
+
+# Finish Kernel Padding
+	@SIZE=`wc -c $(KERNEL_DIR)/$(KERNEL_IMAGE) | awk '{ print $$1 }'` ; \
+	KERNEL_PART_SIZE=`printf "%d" $(KERNEL_SIZE)` ; \
+	PAD=`expr $$KERNEL_PART_SIZE - $$SIZE` ; \
+	dd if=/dev/zero count=1 bs=$$PAD 2> /dev/null | \
+	tr \\000 \\377 >> $(PACKED_DIR)/$(PACKED_IMAGE)
+
+# Packed Image Size
+	@echo -e "\n-Packed Image Size"
+	@wc -c $(PACKED_DIR)/$(PACKED_IMAGE)
+
+clean:
+	rm -f $(PACKED_DIR)/$(PACKED_IMAGE)
+
+check_img:
+	@if [ ! -f $(UBOOT_DIR)/$(UBOOT_IMAGE) ]; then \
+	echo "" ; \
+	echo "Please copy \"$(UBOOT_IMAGE)\" to current directory"; \
+	echo "" ; \
+	exit 1; \
+	fi 
+
+	@if [ ! -f $(KERNEL_DIR)/$(KERNEL_IMAGE) ]; then \
+	echo "" ; \
+	echo "Please copy \"$(KERNEL_IMAGE)\" to current directory"; \
+	echo "" ; \
+	exit 1; \
+	fi
