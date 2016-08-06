@@ -1,0 +1,1 @@
+openocd.exe -f jlink.cfg -f openocd-ralink.cfg 

@@ -1,0 +1,1 @@
+openocd.exe -f wiggler.cfg -f openocd-ralink.cfg
