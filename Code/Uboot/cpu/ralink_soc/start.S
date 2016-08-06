@@ -21,8 +21,9 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston,
  * MA 02111-1307 USA
  */
+
 /*
- * Modify by aggresss for RFDemo project.
+ *  Modify by aggresss for RFDemo project.
  */
 
 #include <config.h>
@@ -44,7 +45,6 @@
    li k0,bev
 
 	.set noreorder
-
 	.globl _start
 	.text
 _start:
@@ -215,12 +215,6 @@ _start:
 #endif /* CONFIG_PURPLE */
 	.align 4
 reset:
-#if defined (RT2883_FPGA_BOARD) || defined (RT2883_ASIC_BOARD) || \
-    defined (RT3052_FPGA_BOARD) || defined (RT3052_ASIC_BOARD) || \
-    defined (RT3352_FPGA_BOARD) || defined (RT3352_ASIC_BOARD) || \
-    defined (RT5350_FPGA_BOARD) || defined (RT5350_ASIC_BOARD) || \
-    defined (RT3883_FPGA_BOARD) || defined (RT3883_ASIC_BOARD) || \
-    defined (RT6855_FPGA_BOARD) || defined (RT6855_ASIC_BOARD)
 	# Initialize the register file
 	# should not be required with good software practices
 	or	$1,$0, $0
@@ -502,18 +496,20 @@ reset:
 	bne	$11, $0, 1b
 	add	$11, -1
 	 
-
 15:
 
-#endif	
+/*
+ ********************************************************************
 
+ Initialize the system control regester. 
 
+ ********************************************************************
+ */
 
 	li t5, RALINK_SYSCTL_BASE + 0x0060
 	lw t6, 0(t5)
 	nop
 	or t6, 0x03
-
 
 	/* enable normal function i2c, spi, uartl, jtag, mdio, ge1 */
 	and t6, ~(0xf<<7)
@@ -521,7 +517,6 @@ reset:
 	and t6, ~(0x3)
 	/* LNA_G_SHARE_MODE and LNA_A_SHARE_MODE at normal function, not GPIO mode */
 	and t6, ~(0xf<<16)
-
 
 #if defined(RT3052_ASIC_BOARD) || defined(RT3352_ASIC_BOARD) || defined(RT6855_ASIC_BOARD)
 #if defined(P5_MAC_TO_PHY_MODE)
@@ -542,7 +537,6 @@ reset:
 #endif
 #endif
 
-
 #ifdef MAC_TO_VITESSE_MODE
 	//set spi pin to normal mode
 #if defined (RT2880_FGPA_BOARD) || defined (RT2880_ASIC_BOARD)
@@ -552,11 +546,9 @@ reset:
 #endif
 #endif
 
-
 #ifdef PCI_AT_GPIO_FUNC
 	or t6, 1<<7
 #endif
-
 
 	//set GPIOMODE
 	nop
@@ -576,6 +568,7 @@ reset:
 	sw t6, 0(t5)
 	nop
 #endif
+
 	//set all GPIO to output high
         li t5, RALINK_PIO_BASE + 0x24
         li t6, 0xffffbfff
@@ -587,6 +580,7 @@ reset:
         nop
         sw t6, 0(t5)
         nop
+
 #if defined(ON_BOARD_16BIT_DRAM_BUS)
 	//if sdram bus is 16bits,set gpio24~gpio39 to output high
         li t5, RALINK_PIO_BASE + 0x4C
@@ -600,22 +594,6 @@ reset:
         sw t6, 0(t5)
         nop
 #endif
-
-#if defined(RT5350_ASIC_BOARD)
-	// set default LED polarity value for RT5350 REF board
-	// Active status:
-	// EPHY_LED0  H: Light
-	// EPHY_LED1  H: Light
-	// EPHY_LED2  H: Light
-	// EPHY_LED3  L: Light
-	// EPHY_LED4  H: Light
-
-	li t5, RALINK_ETH_SW_BASE + 0x168
-	li t6, 0x17
-	nop
-	sw t6, 0(t5)
-	nop
-#endif		
 
 #if defined(RT3052_ASIC_BOARD)
 	//turn on power LED (GPIO 9)
@@ -632,11 +610,12 @@ reset:
 	nop
 #endif
 
-	
+/*
+ ********************************************************************
+ *   Set up temporary stack.
+ ********************************************************************
+ */
 
-
-	/* Set up temporary stack.
-	 */
 	li	a0, CFG_INIT_SP_OFFSET
 	//bal	mips_cache_lock
 	nop
@@ -670,6 +649,7 @@ reset:
 	nop
 
 /*
+ ************************************************************************
  * void relocate_code (addr_sp, gd, addr_moni)
  *
  * This "function" does not return, instead it continues in RAM
@@ -678,6 +658,7 @@ reset:
  * a0 = addr_sp
  * a1 = gd
  * a2 = destination address
+ ************************************************************************
  */
 	.globl	relocate_code
 	.ent	relocate_code
@@ -764,9 +745,11 @@ in_ram:
 
 	.end	relocate_code
 
-
-	/* Exception handlers.
-	 */
+/*
+ ******************************************
+ *	 Exception handlers.
+ ******************************************
+ */
 romReserved:
 	b romReserved
 
