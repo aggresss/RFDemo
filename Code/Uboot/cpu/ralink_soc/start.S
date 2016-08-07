@@ -505,12 +505,11 @@ reset:
 
  ********************************************************************
  */
-
+    /* GPIO mode select */
 	li t5, RALINK_SYSCTL_BASE + 0x0060
 	lw t6, 0(t5)
 	nop
 	or t6, 0x03
-
 	/* enable normal function i2c, spi, uartl, jtag, mdio, ge1 */
 	and t6, ~(0xf<<7)
 	and t6, ~(0x3<<5)
