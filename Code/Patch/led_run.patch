@@ -1,0 +1,45 @@
+diff -ruNa oUboot/cpu/ralink_soc/start.S nUboot/cpu/ralink_soc/start.S
+--- oUboot/cpu/ralink_soc/start.S	2016-08-25 23:39:48.017358700 +0800
++++ nUboot/cpu/ralink_soc/start.S	2016-08-25 22:56:27.334344664 +0800
+@@ -645,7 +645,7 @@
+ 	lw	gp, 0(ra)
+ #endif
+ 	
+-	la	t9, board_init_f
++	la	t9, led_run
+ 	j	t9
+ 	nop
+ 
+diff -ruNa oUboot/lib_mips/board.c nUboot/lib_mips/board.c
+--- oUboot/lib_mips/board.c	2016-08-25 23:39:48.037361001 +0800
++++ nUboot/lib_mips/board.c	2016-08-25 22:35:26.775318398 +0800
+@@ -2185,4 +2185,29 @@
+ 	return;
+ }
+ 
++#define LED_CON (*(volatile unsigned long *) (RALINK_PIO_BASE + 0x24))
++#define LED_DAT (*(volatile unsigned long *) (RALINK_PIO_BASE + 0x30))
++#define LED_01 0x1<<8   //GPIO_08
++#define LED_02 0x1<<13  //GPIO_13
++#define LED_03 0x1<<14  //GPIO_14
++#define LED_04 0x1<<12  //GPIO_12
++#define LED_05 0x1<<5   //GPIO_05
++void wait(unsigned long dly)
++{
++	for(; dly > 0; dly--);
++}
++
++void led_run(void)
++{
++    unsigned long i = 0;
++    unsigned long LED_X[5] = {LED_01, LED_02, LED_03, LED_04, LED_05,};
++    while(1){
++		wait(50000000);
++		LED_CON = LED_X[i];        // 根据i的值，点亮LED1-5
++        LED_DAT = LED_X[i];
++		if(++i == 5)
++			i = 0;
++	}
++    return;
++}
+ #endif
