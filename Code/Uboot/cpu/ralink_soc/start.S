@@ -516,6 +516,8 @@ reset:
 	and t6, ~(0x3)
 	/* LNA_G_SHARE_MODE and LNA_A_SHARE_MODE at normal function, not GPIO mode */
 	and t6, ~(0xf<<16)
+    /* disable i2c mode and turned to gpio mode, modify by agg */
+    or t6, 0x01<<1
 
 #if defined(RT3052_ASIC_BOARD) || defined(RT3352_ASIC_BOARD) || defined(RT6855_ASIC_BOARD)
 #if defined(P5_MAC_TO_PHY_MODE)
@@ -599,11 +601,11 @@ reset:
 	li t5, RALINK_PIO_BASE + 0x24
 	lw t6, 0(t5)
 	nop
-	or t6, 1<<9
+	or t6, 1<<8
 	sw t6, 0(t5)
 	nop
 	li t5, RALINK_PIO_BASE + 0x30
-	li t6, 1<<9
+	li t6, 1<<8
 	nop
 	sw t6, 0(t5)
 	nop
