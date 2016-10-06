@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="0.1295910839">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="0.1295910839" moduleId="org.eclipse.cdt.core.settings" name="Default">
+				<externalSettings>
+					<externalSetting/>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration buildProperties="" description="" id="0.1295910839" name="Default" parent="org.eclipse.cdt.build.core.prefbase.cfg">
+					<folderInfo id="0.1295910839." name="/" resourcePath="">
+						<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.616791523" name="No ToolChain" resourceTypeBasedDiscovery="false" superClass="org.eclipse.cdt.build.core.prefbase.toolchain">
+							<targetPlatform id="org.eclipse.cdt.build.core.prefbase.toolchain.616791523.550459117" name=""/>
+							<builder id="org.eclipse.cdt.build.core.settings.default.builder.2077320601" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="org.eclipse.cdt.build.core.settings.default.builder"/>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.800254988" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.1193855107" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
+								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1600580623" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="RT3052_ASIC_BOARD=1"/>
+									<listOptionValue builtIn="false" value="RT3052_MP2=1"/>
+									<listOptionValue builtIn="false" value="P5_MAC_TO_NONE_MODE=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_NOR_FLASH_COMPONENT=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_SDR=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_128M_DRAM_COMPONENT=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_32BIT_DRAM_BUS=1"/>
+									<listOptionValue builtIn="false" value="UBOOT_RAM=1"/>
+									<listOptionValue builtIn="false" value="TEXT_BASE=0x80200000"/>
+									<listOptionValue builtIn="false" value="ASIC_BORAD=1"/>
+								</option>
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1330422369" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+							</tool>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.1032243787" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
+								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1219701959" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="RT3052_ASIC_BOARD=1"/>
+									<listOptionValue builtIn="false" value="RT3052_MP2=1"/>
+									<listOptionValue builtIn="false" value="P5_MAC_TO_NONE_MODE=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_NOR_FLASH_COMPONENT=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_SDR=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_128M_DRAM_COMPONENT=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_32BIT_DRAM_BUS=1"/>
+									<listOptionValue builtIn="false" value="UBOOT_RAM=1"/>
+									<listOptionValue builtIn="false" value="TEXT_BASE=0x80200000"/>
+									<listOptionValue builtIn="false" value="ASIC_BORAD=1"/>
+								</option>
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.392810188" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+							</tool>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.932062358" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
+								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1789355011" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="RT3052_ASIC_BOARD=1"/>
+									<listOptionValue builtIn="false" value="RT3052_MP2=1"/>
+									<listOptionValue builtIn="false" value="P5_MAC_TO_NONE_MODE=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_NOR_FLASH_COMPONENT=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_SDR=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_128M_DRAM_COMPONENT=1"/>
+									<listOptionValue builtIn="false" value="ON_BOARD_32BIT_DRAM_BUS=1"/>
+									<listOptionValue builtIn="false" value="UBOOT_RAM=1"/>
+									<listOptionValue builtIn="false" value="TEXT_BASE=0x80200000"/>
+									<listOptionValue builtIn="false" value="ASIC_BORAD=1"/>
+								</option>
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1275614494" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="Uboot_ralink_3.6.null.1211218185" name="Uboot_ralink_3.6"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="0.1295910839">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Default">
+			<resource resourceType="PROJECT" workspacePath="/Uboot_ralink_3.6"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+</cproject>
