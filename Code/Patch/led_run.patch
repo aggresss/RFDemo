@@ -1,7 +1,7 @@
 diff -ruNa oUboot/cpu/ralink_soc/start.S nUboot/cpu/ralink_soc/start.S
 --- oUboot/cpu/ralink_soc/start.S	2016-08-25 23:39:48.017358700 +0800
 +++ nUboot/cpu/ralink_soc/start.S	2016-08-25 22:56:27.334344664 +0800
-@@ -645,7 +645,7 @@
+@@ -1376,7 +1376,7 @@
  	lw	gp, 0(ra)
  #endif
  	
