@@ -1140,6 +1140,8 @@ tRFCinit:
 	and t6, ~(0x3)
 	/* LNA_G_SHARE_MODE and LNA_A_SHARE_MODE at normal function, not GPIO mode */
 	and t6, ~(0xf<<16)
+    /* disable I2C mode and turned to gpio mode, modify by agg */
+    or t6, 0x01<<1
 #endif
 
 #if defined(RT3052_ASIC_BOARD) || defined(RT3352_ASIC_BOARD) || defined(RT6855_ASIC_BOARD)
